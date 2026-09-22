@@ -73,6 +73,9 @@ export default function ClientCheckout() {
     const proposalsDb = JSON.parse(existingDbStr);
     const savedData = proposalsDb[id as string];
     if (savedData) {
+      if (savedData.vehicleInfo && (savedData.vehicleInfo.modelo === "Tiggo 5X Pro" || !savedData.vehicleInfo.modelo || savedData.vehicleInfo.modelo === "Veículo Selecionado")) {
+        savedData.vehicleInfo.modelo = "Mercedes Actros";
+      }
       if (savedData.status === "signed") { setIsSigned(true); setData(savedData); return; }
       setData(savedData);
       setSelectedFin(savedData?.clientChoice?.selectedFin || savedData?.finQuotes?.[0] || null);
@@ -87,12 +90,12 @@ export default function ClientCheckout() {
       }
     } else {
       const fallbackData = {
-        vehicleInfo: { modelo: "Tiggo 5X Pro", anoFabricacao: "2023/2024", valorVeiculo: "14500000" },
+        vehicleInfo: { modelo: "Mercedes Actros", anoFabricacao: "2024/2024", valorVeiculo: "78000000" },
         clienteNome: "João da Silva",
         clienteCpf: "123.456.789-00",
         finQuotes: [
-          { banco: "Banco Santander", parcelas: 60, valorParcela: "2450.00", taxa: "1.99%", entrada: "50000" },
-          { banco: "Banco BV", parcelas: 48, valorParcela: "2850.00", taxa: "1.89%", entrada: "50000" }
+          { banco: "Banco Santander", parcelas: 60, valorParcela: "71510.39", taxa: "2.57%", entrada: "50000" },
+          { banco: "Banco BV", parcelas: 48, valorParcela: "82340.10", taxa: "2.55%", entrada: "50000" }
         ],
         segQuotes: [
           { seguradora: "Porto Seguro", cobertura: "Compreensiva (100% FIPE)", valorPremio: 3200.00, valorFranquia: 2500.00 },
@@ -205,7 +208,7 @@ export default function ClientCheckout() {
             <div className="w-8 h-8 bg-[var(--cor-principal)] rounded flex items-center justify-center shadow-md">
               <Car className="text-white w-5 h-5" />
             </div>
-            <h1 className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">AutoPremium</h1>
+            <h1 className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">Mercedes-Benz F&amp;I</h1>
           </div>
           <Badge className="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 font-bold px-3 py-1 border-none shadow-sm">
             Proposta Ativa
@@ -215,16 +218,16 @@ export default function ClientCheckout() {
 
       {/* Hero Banner */}
       <div className="w-full bg-zinc-900 h-[320px] relative overflow-hidden shadow-inner">
-        <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1200&auto=format&fit=crop" alt="Carro"
-          className="w-full h-full object-cover opacity-50 mix-blend-overlay object-center scale-105 hover:scale-100 transition-transform duration-1000" />
+        <img src="/assets/branding/login-trucks-cover.png" alt="Mercedes Actros"
+          className="w-full h-full object-cover opacity-60 mix-blend-overlay object-center scale-105 hover:scale-100 transition-transform duration-1000" />
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full p-6 pb-8 max-w-4xl mx-auto">
           <Badge className="bg-white/20 hover:bg-white/30 text-white backdrop-blur-md mb-4 border-none shadow-sm font-bold tracking-widest uppercase text-[10px] px-2 py-1">
             Resumo do Veículo
           </Badge>
-          <h2 className="text-4xl sm:text-5xl font-black text-white mb-3 tracking-tight">{vehicleInfo?.modelo || "Veículo Selecionado"}</h2>
+          <h2 className="text-4xl sm:text-5xl font-black text-white mb-3 tracking-tight">{vehicleInfo?.modelo || "Mercedes Actros"}</h2>
           <div className="flex items-center gap-6 text-zinc-300 text-sm font-semibold">
-            <span className="flex items-center gap-2 bg-zinc-800/50 px-3 py-1.5 rounded-full backdrop-blur-sm"><Calendar className="w-4 h-4 text-[var(--cor-principal)]" /> {vehicleInfo?.anoFabricacao || "2023/2024"}</span>
+            <span className="flex items-center gap-2 bg-zinc-800/50 px-3 py-1.5 rounded-full backdrop-blur-sm"><Calendar className="w-4 h-4 text-[var(--cor-principal)]" /> {vehicleInfo?.anoFabricacao || "2024/2024"}</span>
             <span className="flex items-center gap-2 bg-zinc-800/50 px-3 py-1.5 rounded-full backdrop-blur-sm"><DollarSign className="w-4 h-4 text-emerald-400" /> Avaliado em R$ {(parseFloat(vehicleInfo?.valorVeiculo?.replace(/\D/g, '') || "0") / 100).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</span>
           </div>
         </div>
@@ -256,11 +259,11 @@ export default function ClientCheckout() {
                       <div><p className="text-3xl font-black text-zinc-900 dark:text-zinc-100">{fin.parcelas}x</p></div>
                       <div className="text-right">
                         <p className="text-xs text-muted-foreground font-bold uppercase">Parcela</p>
-                        <p className="text-2xl font-black text-[var(--cor-principal)]">R$ {fin.valorParcela}</p>
+                        <p className="text-2xl font-black text-[var(--cor-principal)]">R$ {parseFloat(String(fin.valorParcela).replace(/[^0-9.-]/g, '') || '0').toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                       </div>
                     </div>
                     <div className="pt-3 border-t border-zinc-100 dark:border-zinc-800 flex justify-between">
-                      <span className="text-xs font-semibold text-zinc-500">Entrada: R$ {parseFloat(fin.entrada || 0).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</span>
+                      <span className="text-xs font-semibold text-zinc-500">Entrada: R$ {parseFloat(String(fin.entrada).replace(/[^0-9.-]/g, '') || '0').toLocaleString('pt-BR', {minimumFractionDigits: 2})}</span>
                       <span className="text-xs font-semibold text-zinc-500">Taxa: {fin.taxa}</span>
                     </div>
                   </Card>

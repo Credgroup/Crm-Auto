@@ -279,8 +279,8 @@ function ProductFormContent() {
                       <Button
                         className="w-full cursor-pointer bg-emerald-600 hover:bg-emerald-700 text-white shadow-md font-semibold"
                         onClick={() => {
-                          let modelo = "Veículo Selecionado";
-                          let anoFabricacao = "2023/2024";
+                          let modelo = "Mercedes Actros";
+                          let anoFabricacao = "2024/2024";
                           let valorVeiculo = "0";
 
                           const sessionData = sidebar?.find((s: any) => s.title?.includes("Veículo") || s.title?.includes("Caminhão") || s.typeSession?.includes("veiculo"));
@@ -343,8 +343,8 @@ function ProductFormContent() {
                       <Button
                         className="w-full cursor-pointer bg-[var(--cor-principal)] hover:bg-[var(--cor-principal)]/90 text-white shadow-md font-semibold"
                         onClick={() => {
-                          let modelo = "Veículo Selecionado";
-                          let anoFabricacao = "2023/2024";
+                          let modelo = "Mercedes Actros";
+                          let anoFabricacao = "2024/2024";
                           let valorVeiculo = "0";
 
                           const sessionData = sidebar?.find((s: any) => s.title?.includes("Veículo") || s.title?.includes("Caminhão") || s.typeSession?.includes("veiculo"));

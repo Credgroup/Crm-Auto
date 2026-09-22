@@ -111,7 +111,7 @@ export default function ClientSignature() {
               { idPergunta: 3, dsPergunta: "Valor do Veículo", dsResposta: valorVeiculoFormatado },
               { idPergunta: 4, dsPergunta: "Entrada", dsResposta: selectedFin?.entrada ? `R$ ${parseFloat(selectedFin.entrada).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}` : "N/A" },
               { idPergunta: 5, dsPergunta: "Banco Escolhido", dsResposta: selectedFin?.banco || "N/A" },
-              { idPergunta: 6, dsPergunta: "Parcelas", dsResposta: selectedFin?.parcelas ? `${selectedFin.parcelas}x de R$ ${selectedFin.valorParcela}` : "N/A" },
+              { idPergunta: 6, dsPergunta: "Parcelas", dsResposta: selectedFin?.parcelas ? `${selectedFin.parcelas}x de R$ ${parseFloat(String(selectedFin.valorParcela).replace(/[^0-9.-]/g, '') || '0').toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : "N/A" },
               { idPergunta: 7, dsPergunta: "RG", dsResposta: rg || "N/A" },
               { idPergunta: 8, dsPergunta: "KM Rodado", dsResposta: kmRodado || "N/A" },
               { idPergunta: 9, dsPergunta: "Data de Nascimento", dsResposta: dataNascimento || "N/A" },
