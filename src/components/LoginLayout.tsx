@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { MercedesLogo } from "@/components/Branding/MercedesLogo";
 
 export function LoginLayout() {
   const platVersion = import.meta.env.VITE_IMAGE_VERSION ?? "0.0.0";
@@ -10,12 +11,20 @@ export function LoginLayout() {
           <img src="/assets/branding/login-trucks-cover.png" alt="Caminhão em centro logístico" className="absolute inset-0 h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/10 to-black/55" />
           <div className="absolute left-10 top-10 rounded-2xl border border-white/15 bg-black/30 p-6 shadow-2xl backdrop-blur-md">
-            <div className="h-14 w-64 bg-[image:var(--image-logo-extended-dark)] bg-contain bg-left bg-no-repeat" />
+            <div className="flex items-center">
+              <MercedesLogo variant="extended" size="md" theme="dark" />
+            </div>
             <div className="my-5 h-px bg-white/20" />
             <div className="flex items-center gap-3">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/60">Powered by</span>
-              <div className="rounded-lg bg-white px-3 py-2">
-                <img src="/assets/branding/ekio-logo.png" alt="Ekio" className="h-7 w-auto object-contain" />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/60">
+                Powered by
+              </span>
+              <div className="rounded-lg bg-white px-3 py-2 flex items-center justify-center shadow-sm">
+                <img
+                  src="/assets/branding/ekio-logo.png"
+                  alt="Ekio"
+                  className="h-7 w-auto object-contain"
+                />
               </div>
             </div>
           </div>

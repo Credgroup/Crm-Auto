@@ -12,6 +12,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Link } from "react-router";
+import { MercedesLogo } from "@/components/Branding/MercedesLogo";
 
 // Configutação do Sidebar
 const data = {
@@ -68,22 +69,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar collapsible="icon" {...props} className="">
-      <SidebarHeader className="bg-[var(--paleta-branco-300)] dark:bg-[var(--paleta-preto-400)]">
+      <SidebarHeader className="bg-[var(--paleta-branco-300)] dark:bg-[var(--paleta-preto-400)] py-4 px-2">
         <Link
           to="/"
           aria-label="Mercedes-Benz Trucks F&I Hub"
-          className={`block w-full h-10 mt-4 bg-contain bg-no-repeat flex items-center justify-center bg-center ${
-            state == "collapsed"
-              ? "bg-[image:var(--image-logo-compact)] dark:bg-[image:var(--image-logo-compact-dark)]"
-              : "bg-[image:var(--image-logo-extended)] dark:bg-[image:var(--image-logo-extended-dark)]"
-          }`}
-        ></Link>
-        {state !== "collapsed" && (
-          <div className="mb-4 mt-2 flex items-center justify-center gap-2 border-t pt-3">
-            <span className="text-[8px] font-semibold uppercase tracking-widest text-zinc-400">Powered by</span>
-            <img src="/assets/branding/ekio-logo.png" alt="Ekio" className="h-5 w-auto object-contain dark:brightness-0 dark:invert" />
-          </div>
-        )}
+          className="flex items-center justify-center w-full"
+        >
+          {state === "collapsed" ? (
+            <MercedesLogo variant="compact" size="md" />
+          ) : (
+            <MercedesLogo variant="extended" size="md" />
+          )}
+        </Link>
       </SidebarHeader>
       <SidebarContent className="bg-[var(--paleta-branco-300)] dark:bg-[var(--paleta-preto-400)]">
         <NavMain items={data.navContent} />

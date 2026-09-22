@@ -84,12 +84,12 @@ mock.onPost(/api\/service/).reply((config) => {
   
   // 2. Mock de Parceiros (Prc: 182)
   if (codigoHeader === '182') {
-    return [200, [{ dschave: "1", idparceiro: 1, idusuario: 1, nmparceiro: "Parceiro Mock Padrão" }]];
+    return [200, [{ dschave: "1", idparceiro: 1, idusuario: 1, nmparceiro: "Mercedes" }]];
   }
 
   // 3. Mock de Operações (Prc: 54)
   if (codigoHeader === '54') {
-    return [200, [{ idoperacao: 1, nmoperacao: "Operação Base Mockada" }]];
+    return [200, [{ idoperacao: 1, nmoperacao: "Mercedes Trucks" }]];
   }
 
   // 4. Mock de Domínios (Prc: 8)

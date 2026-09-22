@@ -20,6 +20,7 @@ import { Link, useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import { useUsuarioStore } from "@/store/usuarioStore";
 import { LuLoaderCircle } from "react-icons/lu";
+import { MercedesLogo } from "@/components/Branding/MercedesLogo";
 
 export default function Login() {
   const setAutenticado = useAuthStore((state) => state.setAutenticado);
@@ -78,14 +79,13 @@ export default function Login() {
 
   return (
     <div className="max-w-[350px] w-full">
-      <div className="w-full text-center mb-10 -mt-10 flex justify-center flex-col items-center">
-        <div className="relative logo top-1 w-44 h-12 rounded-md bg-[image:var(--image-logo-extended)] dark:bg-[image:var(--image-logo-extended-dark)] bg-contain bg-no-repeat bg-center mb-6"></div>
-        <div className="mb-5 flex items-center gap-2">
-          <span className="text-[9px] font-semibold uppercase tracking-widest text-zinc-400">Powered by</span>
-          <img src="/assets/branding/ekio-logo.png" alt="Ekio" className="h-6 w-auto object-contain dark:brightness-0 dark:invert" />
+      <div className="w-full text-center mb-8 -mt-4 flex justify-center flex-col items-center">
+        <div className="mb-4 flex items-center justify-center">
+          <MercedesLogo variant="vertical" size="lg" />
         </div>
-        <h1 className="text-xl mb-1 font-semibold">Mercedes-Benz Trucks F&amp;I Hub</h1>
-        <p className="text-sm text-zinc-500">Financiamento, seguros e serviços em uma jornada digital.</p>
+        <p className="text-sm text-zinc-500 max-w-xs">
+          Financiamento, seguros e serviços em uma jornada digital.
+        </p>
       </div>
       <form
         className="flex flex-col gap-3 w-full"
