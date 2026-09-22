@@ -102,6 +102,13 @@ const ProductFormSummary: React.FC<Readonly<ProductFormSummaryProps>> = ({ idPro
 
   const finalVlParcela = vlParcelaLive !== undefined ? vlParcelaLive : (productDetails?.vlParcela ? parseFloat(productDetails.vlParcela) : undefined);
 
+  const formatBRL = (val?: number | string | null) => {
+    if (val === undefined || val === null || val === "") return "--";
+    const num = typeof val === "number" ? val : parseFloat(String(val).replace(/[^0-9.-]/g, ""));
+    if (isNaN(num)) return "--";
+    return num.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  };
+
   return (
     <Card className="w-full p-6 flex flex-col gap-4 min-w-72">
       <div className="flex gap-3 items-start mb-2">
@@ -118,7 +125,7 @@ const ProductFormSummary: React.FC<Readonly<ProductFormSummaryProps>> = ({ idPro
       <div className="space-y-1 text-sm">
         <div className="flex justify-between font-semibold">
           <span>SUBTOTAL</span>
-          <span>{valorSubtotal !== undefined ? `R$${valorSubtotal.toFixed(2).replace(".", ",")}` : "--"}</span>
+          <span>{valorSubtotal !== undefined ? `R$ ${formatBRL(valorSubtotal)}` : "--"}</span>
         </div>
         {
           qtParcelasFinal && (
@@ -136,12 +143,12 @@ const ProductFormSummary: React.FC<Readonly<ProductFormSummaryProps>> = ({ idPro
             <div className="flex flex-col gap-0 items-end">
               <div className="flex flex-row gap-1 items-baseline">
                 <span className="text-xs">{qtParcelasFinal}x de</span>
-                <b className="text-2xl">{finalVlParcela !== undefined ? `R$${finalVlParcela.toFixed(2).replace(".", ",")}` : "--"}</b>
+                <b className="text-2xl">{finalVlParcela !== undefined ? `R$ ${formatBRL(finalVlParcela)}` : "--"}</b>
               </div>
-              <span className="text-xs">ou <b>{valorSubtotal !== undefined ? `R$${valorSubtotal.toFixed(2).replace(".", ",")}` : "--"}</b> à vista</span>
+              <span className="text-xs">ou <b>{valorSubtotal !== undefined ? `R$ ${formatBRL(valorSubtotal)}` : "--"}</b> à vista</span>
             </div>
           ) : (
-            <span>{valorSubtotal !== undefined ? `R$${valorSubtotal.toFixed(2).replace(".", ",")}` : "--"}</span>
+            <span>{valorSubtotal !== undefined ? `R$ ${formatBRL(valorSubtotal)}` : "--"}</span>
           )
         }
       </div>

@@ -89,7 +89,7 @@ export default function PixCopyPaste({ idPaymentMethod, idSeguro }: Readonly<Pix
                     <h1 className="text-2xl font-bold">Pix gerado com sucesso!</h1>
                     {
                       pixData?.nrParcela && pixData?.valorParcela && (
-                        <h3 className="font-semibold">{pixData.nrParcela}x de R${(pixData.valorParcela).toFixed(2).replace(".", ",")}</h3>
+                        <h3 className="font-semibold">{pixData.nrParcela}x de R$ {Number(pixData.valorParcela).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h3>
                       )
                     }
                     <h3>Data de vencimento: {format(new Date(pixData?.dtExpericao), "dd/MM/yyyy HH:mm")}</h3>

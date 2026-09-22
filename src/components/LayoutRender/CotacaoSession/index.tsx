@@ -251,7 +251,7 @@ export default function CotacaoSession({ allSessions, updateNormalField, idProdu
                         <div className="space-y-1.5 pt-2 border-t border-dashed border-zinc-200 dark:border-zinc-800">
                           <p className="text-sm flex justify-between">
                             <span className="text-muted-foreground">{t("product.valueInstallment")}:</span>
-                            <span className="font-semibold text-zinc-950 dark:text-zinc-50">R$ {sim.valorParcela}</span>
+                            <span className="font-semibold text-zinc-950 dark:text-zinc-50">R$ {Number(sim.valorParcela).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                           </p>
                           <p className="text-sm flex justify-between">
                             <span className="text-muted-foreground">{t("product.monthlyRate")}:</span>
@@ -259,7 +259,7 @@ export default function CotacaoSession({ allSessions, updateNormalField, idProdu
                           </p>
                           <p className="text-sm flex justify-between">
                             <span className="text-muted-foreground">{t("product.downPayment")}:</span>
-                            <span className="font-semibold text-zinc-600 dark:text-zinc-400">R$ {sim.entrada.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+                            <span className="font-semibold text-zinc-600 dark:text-zinc-400">R$ {Number(sim.entrada).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                           </p>
                         </div>
                         {isPerfectCombo && sim.justificativa && (
@@ -323,13 +323,13 @@ export default function CotacaoSession({ allSessions, updateNormalField, idProdu
                         <div className="space-y-1.5 pt-2 border-t border-dashed border-zinc-200 dark:border-zinc-800">
                           <p className="text-sm flex justify-between">
                             <span className="text-muted-foreground">{t("product.cashPayment")}:</span>
-                            <span className="font-bold text-[var(--cor-principal)]">R$ {sim.valorPremio.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+                            <span className="font-bold text-[var(--cor-principal)]">R$ {Number(sim.valorPremio).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                           </p>
                           <p className="text-sm flex justify-between">
                             <span className="text-muted-foreground">{t("product.deductible")}:</span>
                             <span className="font-semibold text-zinc-700 dark:text-zinc-300">
-                              {sim.valorFranquia > 0 
-                                ? `R$ ${sim.valorFranquia.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`
+                              {Number(sim.valorFranquia) > 0 
+                                ? `R$ ${Number(sim.valorFranquia).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
                                 : "Isenta"
                               }
                             </span>
