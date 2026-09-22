@@ -7,6 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
+        VITE_USE_MOCK: ${VITE_USE_MOCK:-true}
         VITE_ENV: ${VITE_ENV:-production}
         VITE_URL_DOTCORE: ${VITE_URL_DOTCORE:-http://localhost:5000/}
         VITE_URL_AUTH_DOTCORE: ${VITE_URL_AUTH_DOTCORE:-http://localhost:5000/}
@@ -27,6 +28,7 @@ services:
         VITE_IDPARCEIRO: ${VITE_IDPARCEIRO:-1}
     pull_policy: build
     environment:
+      - VITE_USE_MOCK=${VITE_USE_MOCK:-true}
       - VITE_ENV=${VITE_ENV:-production}
       - VITE_URL_DOTCORE=${VITE_URL_DOTCORE:-http://localhost:5000/}
       - VITE_URL_AUTH_DOTCORE=${VITE_URL_AUTH_DOTCORE:-http://localhost:5000/}
