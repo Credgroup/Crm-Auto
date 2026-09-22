@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 209 100% 22%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 209 100% 22%;
+    --chart-1: 209 100% 22%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 209 100% 22%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 209 100% 22%;
+
+    /* Mercedes-Benz Trucks F&I concept branding */
+    --cor-principal: #00677f;
+    --cor-secundaria: #00adef;
+    --cor-terciaria: #111820;
+    --image-bg-login: url("/assets/branding/login-trucks-cover.png");
+    --image-logo-principal: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 60'><text x='130' y='28' font-family='Arial, sans-serif' font-size='20' font-weight='700' fill='%23ffffff' text-anchor='middle'>MERCEDES-BENZ</text><text x='130' y='47' font-family='Arial, sans-serif' font-size='11' fill='%23ffffff' letter-spacing='3' text-anchor='middle'>TRUCKS F%26I</text></svg>");
+    --image-logo-extended: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 54'><circle cx='25' cy='25' r='19' fill='none' stroke='%23111820' stroke-width='2'/><path d='M25 8 L28 25 L42 35 L25 29 L8 35 L22 25 Z' fill='%23111820'/><text x='55' y='24' font-family='Arial, sans-serif' font-size='15' font-weight='700' fill='%23111820'>MERCEDES-BENZ</text><text x='55' y='41' font-family='Arial, sans-serif' font-size='9' fill='%2300677f' letter-spacing='2'>TRUCKS · F%26I HUB</text></svg>");
+    --image-logo-extended-dark: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 54'><circle cx='25' cy='25' r='19' fill='none' stroke='%23ffffff' stroke-width='2'/><path d='M25 8 L28 25 L42 35 L25 29 L8 35 L22 25 Z' fill='%23ffffff'/><text x='55' y='24' font-family='Arial, sans-serif' font-size='15' font-weight='700' fill='%23ffffff'>MERCEDES-BENZ</text><text x='55' y='41' font-family='Arial, sans-serif' font-size='9' fill='%2300adef' letter-spacing='2'>TRUCKS · F%26I HUB</text></svg>");
+    --image-logo-compact: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><circle cx='25' cy='25' r='21' fill='%23111820'/><circle cx='25' cy='25' r='16' fill='none' stroke='%23ffffff' stroke-width='1.8'/><path d='M25 10 L28 25 L39 33 L25 29 L11 33 L22 25 Z' fill='%23ffffff'/></svg>");
+    --image-logo-compact-dark: var(--image-logo-compact);
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 209 100% 60%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 209 100% 60%;
+    --chart-1: 209 100% 60%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 209 100% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 209 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.personal_scrollbar {
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--sidebar-foreground)) transparent;
+}
+
+.personal_scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.personal_scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.personal_scrollbar::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--sidebar-background));
+  border-radius: 9999px;
+  border: 2px solid hsl(var(--muted));
+}
+
+.personal_scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--border));
+}
+
+.personal_scrollbar::-webkit-scrollbar-thumb:active {
+  background-color: hsl(var(--foreground));
+}
+
+.personal_scrollbar::-webkit-scrollbar-corner {
+  background: hsl(var(--muted));
+}
