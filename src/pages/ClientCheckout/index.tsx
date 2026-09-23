@@ -90,16 +90,21 @@ export default function ClientCheckout() {
       }
     } else {
       const fallbackData = {
-        vehicleInfo: { modelo: "Mercedes Actros", anoFabricacao: "2024/2024", valorVeiculo: "78000000" },
-        clienteNome: "João da Silva",
+        vehicleInfo: {
+          modelo: "Mercedes-Benz Actros 2653 6x4",
+          anoFabricacao: "2024/2025",
+          valorVeiculo: "78000000",
+          financiamentoExistente: "Banco Mercedes-Benz · 60x de R$ 8.940,00 (Contratado)"
+        },
+        clienteNome: "Itamar Soares",
         clienteCpf: "123.456.789-00",
         finQuotes: [
-          { banco: "Banco Santander", parcelas: 60, valorParcela: "71510.39", taxa: "2.57%", entrada: "50000" },
-          { banco: "Banco BV", parcelas: 48, valorParcela: "82340.10", taxa: "2.55%", entrada: "50000" }
+          { banco: "Banco Mercedes-Benz", parcelas: 60, valorParcela: "8940.00", taxa: "1.49%", entrada: "156000", status: "Contratado" }
         ],
         segQuotes: [
-          { seguradora: "Porto Seguro", cobertura: "Compreensiva (100% FIPE)", valorPremio: 3200.00, valorFranquia: 2500.00 },
-          { seguradora: "Suhai", cobertura: "Roubo/Furto + PT", valorPremio: 1850.00, valorFranquia: 0.00 }
+          { seguradora: "Porto Seguro", cobertura: "Compreensiva (100% FIPE) + Vidros e Guincho Ilimitado", valorPremio: 3200.00, valorFranquia: 2500.00, destaque: "Guincho km Ilimitado" },
+          { seguradora: "Tokio Marine", cobertura: "Completa Colisão + Roubo/Furto + RCF-V R$ 500.000", valorPremio: 2950.00, valorFranquia: 3100.00, destaque: "Melhor Custo x Benefício" },
+          { seguradora: "Zurich Seguros", cobertura: "Zurich Frota & Pesados Premium (100% FIPE + Danos Corporais)", valorPremio: 3450.00, valorFranquia: 2800.00, destaque: "Cobertura Ampliada Terceiros" }
         ]
       };
       setData(fallbackData);
@@ -223,12 +228,15 @@ export default function ClientCheckout() {
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full p-6 pb-8 max-w-4xl mx-auto">
           <Badge className="bg-white/20 hover:bg-white/30 text-white backdrop-blur-md mb-4 border-none shadow-sm font-bold tracking-widest uppercase text-[10px] px-2 py-1">
-            Resumo do Veículo
+            Veículo &amp; Financiamento Ativo
           </Badge>
-          <h2 className="text-4xl sm:text-5xl font-black text-white mb-3 tracking-tight">{vehicleInfo?.modelo || "Mercedes Actros"}</h2>
-          <div className="flex items-center gap-6 text-zinc-300 text-sm font-semibold">
-            <span className="flex items-center gap-2 bg-zinc-800/50 px-3 py-1.5 rounded-full backdrop-blur-sm"><Calendar className="w-4 h-4 text-[var(--cor-principal)]" /> {vehicleInfo?.anoFabricacao || "2024/2024"}</span>
-            <span className="flex items-center gap-2 bg-zinc-800/50 px-3 py-1.5 rounded-full backdrop-blur-sm"><DollarSign className="w-4 h-4 text-emerald-400" /> Avaliado em R$ {(parseFloat(vehicleInfo?.valorVeiculo?.replace(/\D/g, '') || "0") / 100).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</span>
+          <h2 className="text-4xl sm:text-5xl font-black text-white mb-3 tracking-tight">{vehicleInfo?.modelo || "Mercedes-Benz Actros 2653 6x4"}</h2>
+          <div className="flex flex-wrap items-center gap-4 text-zinc-300 text-sm font-semibold">
+            <span className="flex items-center gap-2 bg-zinc-800/50 px-3 py-1.5 rounded-full backdrop-blur-sm"><Calendar className="w-4 h-4 text-[var(--cor-principal)]" /> {vehicleInfo?.anoFabricacao || "2024/2025"}</span>
+            <span className="flex items-center gap-2 bg-zinc-800/50 px-3 py-1.5 rounded-full backdrop-blur-sm"><DollarSign className="w-4 h-4 text-emerald-400" /> Avaliado em R$ {(parseFloat(vehicleInfo?.valorVeiculo?.replace(/\D/g, '') || "78000000") / 100).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</span>
+            <span className="flex items-center gap-2 bg-emerald-950/60 text-emerald-300 border border-emerald-500/30 px-3 py-1.5 rounded-full backdrop-blur-sm">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400" /> {vehicleInfo?.financiamentoExistente || "Banco Mercedes-Benz · 60x de R$ 8.940,00 (Contratado)"}
+            </span>
           </div>
         </div>
       </div>
@@ -240,19 +248,19 @@ export default function ClientCheckout() {
         {finQuotes && finQuotes.length > 0 && (
           <div className="space-y-4">
             <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight flex items-center gap-2">
-              <Building2 className="text-[var(--cor-principal)] w-6 h-6" /> Condições de Financiamento
+              <Building2 className="text-[var(--cor-principal)] w-6 h-6" /> Condições de Financiamento do Veículo
             </h3>
             <p className="text-muted-foreground text-sm font-medium">
-              {data?.lockedChoices ? "Opção de parcelamento selecionada para o seu contrato:" : "Selecione a opção de parcelamento que melhor se encaixa no seu bolso:"}
+              Contrato de financiamento vinculado ao seu caminhão:
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {(data?.lockedChoices ? finQuotes.filter((f: any) => f.banco === selectedFin?.banco && f.parcelas === selectedFin?.parcelas) : finQuotes).map((fin: any, index: number) => {
+              {finQuotes.map((fin: any, index: number) => {
                 const isSelected = selectedFin?.banco === fin.banco && selectedFin?.parcelas === fin.parcelas;
                 return (
-                  <Card key={index} className={`p-5 border-2 transition-all duration-300 relative rounded-2xl ${data?.lockedChoices ? 'cursor-default' : 'cursor-pointer'} ${
+                  <Card key={index} className={`p-5 border-2 transition-all duration-300 relative rounded-2xl ${
                     isSelected ? "border-[var(--cor-principal)] bg-[var(--cor-principal)]/5 dark:bg-[var(--cor-principal)]/10 shadow-md ring-1 ring-[var(--cor-principal)]"
-                      : "border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 hover:shadow-lg"
-                  }`} onClick={() => !data?.lockedChoices && setSelectedFin(fin)}>
+                      : "border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
+                  }`} onClick={() => setSelectedFin(fin)}>
                     {isSelected && (<div className="absolute top-4 right-4 bg-white dark:bg-zinc-950 rounded-full shadow-sm"><CheckCircle2 className="text-[var(--cor-principal)] w-6 h-6 fill-white dark:fill-zinc-950" /></div>)}
                     <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider mb-2">{fin.banco}</p>
                     <div className="flex justify-between items-end mb-4">
@@ -276,31 +284,43 @@ export default function ClientCheckout() {
         {/* Seguro */}
         {segQuotes && segQuotes.length > 0 && (
           <div className="space-y-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
-            <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight flex items-center gap-2">
-              <ShieldCheck className="text-blue-600 dark:text-blue-400 w-6 h-6" /> Opções de Seguro Auto
-            </h3>
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight flex items-center gap-2">
+                <ShieldCheck className="text-[var(--cor-principal)] w-6 h-6" /> Proposta de Seguro Selecionada
+              </h3>
+              {selectedSeg && (
+                <Badge className="bg-[var(--cor-principal)] text-white font-bold text-xs px-3 py-1">
+                  Seguradora Escolhida: {selectedSeg.seguradora}
+                </Badge>
+              )}
+            </div>
             <p className="text-muted-foreground text-sm font-medium">
-              {data?.lockedChoices ? "Cobertura selecionada para inclusão no pacote:" : "As melhores coberturas separadas para você. Escolha uma para incluir no pacote:"}
+              Confira a cobertura cotada para o seu caminhão. Você pode alternar entre as 3 cotações de seguradoras abaixo:
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {(data?.lockedChoices ? segQuotes.filter((s: any) => s.seguradora === selectedSeg?.seguradora && s.cobertura === selectedSeg?.cobertura) : segQuotes).map((seg: any, index: number) => {
-                const isSelected = selectedSeg?.seguradora === seg.seguradora && selectedSeg?.cobertura === seg.cobertura;
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {segQuotes.map((seg: any, index: number) => {
+                const isSelected = selectedSeg?.seguradora === seg.seguradora;
                 return (
-                  <Card key={index} className={`p-5 border-2 transition-all duration-300 relative rounded-2xl ${data?.lockedChoices ? 'cursor-default' : 'cursor-pointer'} ${
-                    isSelected ? "border-blue-500 bg-blue-50/50 dark:bg-blue-900/10 shadow-md ring-1 ring-blue-500"
+                  <Card key={index} className={`p-5 border-2 transition-all duration-300 relative rounded-2xl cursor-pointer flex flex-col justify-between ${
+                    isSelected ? "border-[var(--cor-principal)] bg-[var(--cor-principal)]/5 dark:bg-[var(--cor-principal)]/10 shadow-lg ring-2 ring-[var(--cor-principal)]"
                       : "border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 hover:shadow-lg"
-                  }`} onClick={() => !data?.lockedChoices && setSelectedSeg(seg)}>
-                    {isSelected && (<div className="absolute top-4 right-4 bg-white dark:bg-zinc-950 rounded-full shadow-sm"><CheckCircle2 className="text-blue-600 w-6 h-6 fill-white dark:fill-zinc-950" /></div>)}
-                    <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider mb-2">{seg.seguradora}</p>
-                    <p className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-4">{seg.cobertura}</p>
-                    <div className="flex justify-between items-center bg-zinc-50 dark:bg-zinc-950/50 p-3 rounded-xl border border-zinc-100 dark:border-zinc-800">
+                  }`} onClick={() => setSelectedSeg(seg)}>
+                    {isSelected && (<div className="absolute top-4 right-4 bg-[var(--cor-principal)] text-white rounded-full p-1 shadow-sm"><CheckCircle2 className="w-5 h-5 fill-white text-[var(--cor-principal)]" /></div>)}
+                    <div>
+                      <div className="flex items-center gap-2 mb-2 pr-6">
+                        <Badge variant="outline" className="text-xs font-bold uppercase tracking-wider">{seg.seguradora}</Badge>
+                        {seg.destaque && <Badge className="bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border-none text-[9px] font-bold">{seg.destaque}</Badge>}
+                      </div>
+                      <p className="text-base font-bold text-zinc-900 dark:text-zinc-100 mb-3 leading-snug">{seg.cobertura}</p>
+                    </div>
+                    <div className="flex justify-between items-center bg-zinc-50 dark:bg-zinc-950/50 p-3 rounded-xl border border-zinc-100 dark:border-zinc-800 mt-2">
                       <div>
                         <p className="text-[10px] text-muted-foreground font-bold uppercase">Franquia</p>
-                        <p className="text-sm font-semibold">{seg.valorFranquia > 0 ? `R$ ${parseFloat(seg.valorFranquia).toLocaleString('pt-BR')}` : "Isenta"}</p>
+                        <p className="text-sm font-semibold">{Number(seg.valorFranquia) > 0 ? `R$ ${parseFloat(seg.valorFranquia).toLocaleString('pt-BR')}` : "Isenta"}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-[10px] text-blue-600 dark:text-blue-400 font-bold uppercase">Prêmio Anual</p>
-                        <p className="text-xl font-black text-blue-600 dark:text-blue-400">R$ {parseFloat(seg.valorPremio || 0).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</p>
+                        <p className="text-[10px] text-[var(--cor-principal)] font-bold uppercase">Prêmio Anual</p>
+                        <p className="text-lg font-black text-[var(--cor-principal)]">R$ {parseFloat(seg.valorPremio || 0).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</p>
                       </div>
                     </div>
                   </Card>

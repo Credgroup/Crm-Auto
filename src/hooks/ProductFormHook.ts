@@ -248,8 +248,8 @@ export const useProductFormHook = ({ idProduct, onSendNextSession, onSendFinishS
       // Adiciona a sessão de resumo
       sidebarItems.push(resumeSessao);
 
-      // Adiciona a sessão de cotação DEPOIS do resumo para Financiamento e Combo
-      if (idProduct === "4" || idProduct === "5" || idProduct === "8" || idProduct === "9") {
+      // Adiciona a sessão de cotação DEPOIS do resumo para Seguros (Auto/Caminhão), Financiamento e Combo
+      if (idProduct === "3" || idProduct === "10" || idProduct === "4" || idProduct === "5" || idProduct === "8" || idProduct === "9") {
         const cotacaoSessao: Partial<SessaoType> = {
           active: false,
           checked: false,

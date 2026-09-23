@@ -45,7 +45,7 @@ const data = {
       icon: Users,
     },
     {
-      title: "Vendas",
+      title: "Vitrine",
       url: "/sales",
       icon: ShoppingCart,
     },

@@ -174,6 +174,7 @@ export interface Product {
   tpPermiteCotacao: number;
   tpPermiteProposta: number;
   tpPermiteVenda: number;
+  subCategoria?: string;
   checked?: boolean;
   tags?: string[];
   produtosAgrupado?: Product[];

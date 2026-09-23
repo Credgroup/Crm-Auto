@@ -279,39 +279,40 @@ function ProductFormContent() {
                       <Button
                         className="w-full cursor-pointer bg-emerald-600 hover:bg-emerald-700 text-white shadow-md font-semibold"
                         onClick={() => {
-                          let modelo = "Mercedes Actros";
-                          let anoFabricacao = "2024/2024";
-                          let valorVeiculo = "0";
+                          let modelo = "Mercedes-Benz Actros 2653 6x4";
+                          let anoFabricacao = "2024/2025";
+                          let valorVeiculo = "78000000";
+                          let financiamentoExistente = "Banco Mercedes-Benz · 60x de R$ 8.940,00 (Contratado)";
 
                           const sessionData = sidebar?.find((s: any) => s.title?.includes("Veículo") || s.title?.includes("Caminhão") || s.typeSession?.includes("veiculo"));
                           if (sessionData && sessionData.campos) {
-                            modelo = sessionData.campos.find((f: any) => f.campoApi === "modelo")?.conteudo || sessionData.campos.find((f: any) => f.campoApi === "placa")?.conteudo || modelo;
+                            modelo = sessionData.campos.find((f: any) => f.campoApi === "modelo")?.conteudo || modelo;
                             anoFabricacao = sessionData.campos.find((f: any) => f.campoApi === "anoFabricacao")?.conteudo || anoFabricacao;
                             valorVeiculo = sessionData.campos.find((f: any) => f.campoApi === "valorVeiculo")?.conteudo || valorVeiculo;
+                            financiamentoExistente = sessionData.campos.find((f: any) => f.campoApi === "financiamentoExistente")?.conteudo || financiamentoExistente;
                           }
 
                           const cotacaoSession = sidebar?.find((s: any) => s.typeSession === "cotacao");
                           const cotacoesString = cotacaoSession?.campos?.find((f: any) => f.campoApi === "cotacoesDisponibilizadas")?.conteudo;
                           let escolhas = cotacoesString ? JSON.parse(cotacoesString) : null;
 
-                          if (!escolhas || !escolhas.financiamentos || escolhas.financiamentos.length === 0) {
-                            escolhas = {
-                              financiamentos: [
-                                { banco: "Banco Santander", parcelas: 60, valorParcela: "2450.00", taxa: "1.99%", entrada: "50000" },
-                                { banco: "Banco BV", parcelas: 48, valorParcela: "2850.00", taxa: "1.89%", entrada: "50000" }
-                              ],
-                              seguros: [
-                                { seguradora: "Porto Seguro", cobertura: "Compreensiva (100% FIPE)", valorPremio: 3200.00, valorFranquia: 2500.00 },
-                                { seguradora: "Suhai", cobertura: "Roubo/Furto + PT", valorPremio: 1850.00, valorFranquia: 0.00 }
-                              ]
-                            };
-                          }
+                          const defaultSeguros = [
+                            { seguradora: "Porto Seguro", cobertura: "Compreensiva (100% FIPE) + Vidros e Guincho Ilimitado", valorPremio: 3200.00, valorFranquia: 2500.00, destaque: "Guincho km Ilimitado" },
+                            { seguradora: "Tokio Marine", cobertura: "Completa Colisão + Roubo/Furto + RCF-V R$ 500.000", valorPremio: 2950.00, valorFranquia: 3100.00, destaque: "Melhor Custo x Benefício" },
+                            { seguradora: "Zurich Seguros", cobertura: "Zurich Frota & Pesados Premium (100% FIPE + Danos Corporais)", valorPremio: 3450.00, valorFranquia: 2800.00, destaque: "Cobertura Ampliada Terceiros" }
+                          ];
 
-                          const finQuotes = escolhas?.financiamentos || [];
-                          const segQuotes = escolhas?.seguros || [];
+                          const defaultFin = [
+                            { banco: "Banco Mercedes-Benz", parcelas: 60, valorParcela: "8940.00", taxa: "1.49%", entrada: "156000", status: "Contratado" }
+                          ];
 
-                          let clienteNome = "";
-                          let clienteCpf = "";
+                          const finQuotes = escolhas?.financiamentos && escolhas.financiamentos.length > 0 ? escolhas.financiamentos : defaultFin;
+                          const segQuotes = escolhas?.seguros && escolhas.seguros.length > 0 ? escolhas.seguros : defaultSeguros;
+                          const chosenSeg = escolhas?.selectedSeg || segQuotes[0];
+                          const chosenFin = escolhas?.selectedFin || finQuotes[0];
+
+                          let clienteNome = "Itamar Soares";
+                          let clienteCpf = "123.456.789-00";
                           sidebar?.forEach((s: any) => {
                             s.campos?.forEach((f: any) => {
                               if (f.campoApi === "nome" && f.conteudo) clienteNome = f.conteudo;
@@ -320,11 +321,16 @@ function ProductFormContent() {
                           });
 
                           const mockData = {
-                            vehicleInfo: { modelo, anoFabricacao, valorVeiculo },
+                            vehicleInfo: { modelo, anoFabricacao, valorVeiculo, financiamentoExistente },
                             clienteNome,
                             clienteCpf,
                             finQuotes,
-                            segQuotes
+                            segQuotes,
+                            clientChoice: {
+                              selectedFin: chosenFin,
+                              selectedSeg: chosenSeg
+                            },
+                            lockedChoices: true
                           };
                           
                           const newId = generateProposalId();
@@ -343,39 +349,40 @@ function ProductFormContent() {
                       <Button
                         className="w-full cursor-pointer bg-[var(--cor-principal)] hover:bg-[var(--cor-principal)]/90 text-white shadow-md font-semibold"
                         onClick={() => {
-                          let modelo = "Mercedes Actros";
-                          let anoFabricacao = "2024/2024";
-                          let valorVeiculo = "0";
+                          let modelo = "Mercedes-Benz Actros 2653 6x4";
+                          let anoFabricacao = "2024/2025";
+                          let valorVeiculo = "78000000";
+                          let financiamentoExistente = "Banco Mercedes-Benz · 60x de R$ 8.940,00 (Contratado)";
 
                           const sessionData = sidebar?.find((s: any) => s.title?.includes("Veículo") || s.title?.includes("Caminhão") || s.typeSession?.includes("veiculo"));
                           if (sessionData && sessionData.campos) {
-                            modelo = sessionData.campos.find((f: any) => f.campoApi === "modelo")?.conteudo || sessionData.campos.find((f: any) => f.campoApi === "placa")?.conteudo || modelo;
+                            modelo = sessionData.campos.find((f: any) => f.campoApi === "modelo")?.conteudo || modelo;
                             anoFabricacao = sessionData.campos.find((f: any) => f.campoApi === "anoFabricacao")?.conteudo || anoFabricacao;
                             valorVeiculo = sessionData.campos.find((f: any) => f.campoApi === "valorVeiculo")?.conteudo || valorVeiculo;
+                            financiamentoExistente = sessionData.campos.find((f: any) => f.campoApi === "financiamentoExistente")?.conteudo || financiamentoExistente;
                           }
 
                           const cotacaoSession = sidebar?.find((s: any) => s.typeSession === "cotacao");
                           const cotacoesString = cotacaoSession?.campos?.find((f: any) => f.campoApi === "cotacoesDisponibilizadas")?.conteudo;
                           let escolhas = cotacoesString ? JSON.parse(cotacoesString) : null;
 
-                          if (!escolhas || !escolhas.financiamentos || escolhas.financiamentos.length === 0) {
-                            escolhas = {
-                              financiamentos: [
-                                { banco: "Banco Santander", parcelas: 60, valorParcela: "2450.00", taxa: "1.99%", entrada: "50000" },
-                                { banco: "Banco BV", parcelas: 48, valorParcela: "2850.00", taxa: "1.89%", entrada: "50000" }
-                              ],
-                              seguros: [
-                                { seguradora: "Porto Seguro", cobertura: "Compreensiva (100% FIPE)", valorPremio: 3200.00, valorFranquia: 2500.00 },
-                                { seguradora: "Suhai", cobertura: "Roubo/Furto + PT", valorPremio: 1850.00, valorFranquia: 0.00 }
-                              ]
-                            };
-                          }
+                          const defaultSeguros = [
+                            { seguradora: "Porto Seguro", cobertura: "Compreensiva (100% FIPE) + Vidros e Guincho Ilimitado", valorPremio: 3200.00, valorFranquia: 2500.00, destaque: "Guincho km Ilimitado" },
+                            { seguradora: "Tokio Marine", cobertura: "Completa Colisão + Roubo/Furto + RCF-V R$ 500.000", valorPremio: 2950.00, valorFranquia: 3100.00, destaque: "Melhor Custo x Benefício" },
+                            { seguradora: "Zurich Seguros", cobertura: "Zurich Frota & Pesados Premium (100% FIPE + Danos Corporais)", valorPremio: 3450.00, valorFranquia: 2800.00, destaque: "Cobertura Ampliada Terceiros" }
+                          ];
 
-                          const finQuotes = escolhas?.financiamentos || [];
-                          const segQuotes = escolhas?.seguros || [];
+                          const defaultFin = [
+                            { banco: "Banco Mercedes-Benz", parcelas: 60, valorParcela: "8940.00", taxa: "1.49%", entrada: "156000", status: "Contratado" }
+                          ];
 
-                          let clienteNome = "";
-                          let clienteCpf = "";
+                          const finQuotes = escolhas?.financiamentos && escolhas.financiamentos.length > 0 ? escolhas.financiamentos : defaultFin;
+                          const segQuotes = escolhas?.seguros && escolhas.seguros.length > 0 ? escolhas.seguros : defaultSeguros;
+                          const chosenSeg = escolhas?.selectedSeg || segQuotes[0];
+                          const chosenFin = escolhas?.selectedFin || finQuotes[0];
+
+                          let clienteNome = "Itamar Soares";
+                          let clienteCpf = "123.456.789-00";
                           sidebar?.forEach((s: any) => {
                             s.campos?.forEach((f: any) => {
                               if (f.campoApi === "nome" && f.conteudo) clienteNome = f.conteudo;
@@ -384,11 +391,16 @@ function ProductFormContent() {
                           });
 
                           const mockData = {
-                            vehicleInfo: { modelo, anoFabricacao, valorVeiculo },
+                            vehicleInfo: { modelo, anoFabricacao, valorVeiculo, financiamentoExistente },
                             clienteNome,
                             clienteCpf,
                             finQuotes,
-                            segQuotes
+                            segQuotes,
+                            clientChoice: {
+                              selectedFin: chosenFin,
+                              selectedSeg: chosenSeg
+                            },
+                            lockedChoices: true
                           };
                           
                           const newId = generateProposalId();

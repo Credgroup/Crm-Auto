@@ -29,7 +29,10 @@ export default function Vendas() {
     
     if (filtros.categoria === "1") {
       options.push(
+        { value: "auto", label: t("sales.sub.auto") },
         { value: "caminhao", label: t("sales.sub.truck") },
+        { value: "prestamista", label: t("sales.sub.prestamista") },
+        { value: "garantia", label: t("sales.sub.garantia") },
         { value: "rastreador", label: t("sales.sub.tracker") }
       );
     } else if (filtros.categoria === "4") {
@@ -66,9 +69,9 @@ export default function Vendas() {
   return (
     <div className="p-8 h-full flex flex-col">
       <div className="mb-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--cor-principal)]">Mercedes-Benz Trucks · F&amp;I</p>
-        <h1 className="mt-1 text-3xl font-bold">Soluções para cada jornada</h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">Crédito, proteção e serviços conectados para o cliente sair com o caminhão pronto para trabalhar.</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--cor-principal)]">Mercedes-Benz Trucks · Vitrine F&amp;I</p>
+        <h1 className="mt-1 text-3xl font-bold">Vitrine de Soluções F&amp;I</h1>
+        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">Proteção financeira, garantia estendida, seguro auto e serviços conectados para o seu caminhão financiado.</p>
       </div>
       
       <Tabs value={filtros.categoria} onValueChange={handleTabChange} className="w-full mb-4">

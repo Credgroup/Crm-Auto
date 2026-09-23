@@ -541,8 +541,10 @@ function GenericField({
                         if (result.data.modelo) (onFieldUpdate || handleFieldUpdate)("modelo", result.data.modelo);
                         if (result.data.anoFabricacao) (onFieldUpdate || handleFieldUpdate)("anoFabricacao", result.data.anoFabricacao);
                         if (result.data.valorVeiculo) (onFieldUpdate || handleFieldUpdate)("valorVeiculo", result.data.valorVeiculo);
+                        if (result.data.chassi) (onFieldUpdate || handleFieldUpdate)("chassi", result.data.chassi);
+                        if (result.data.financiamentoExistente) (onFieldUpdate || handleFieldUpdate)("financiamentoExistente", result.data.financiamentoExistente);
                         setApiStatus('success');
-                        toast.success("Dados do veículo preenchidos automaticamente!");
+                        toast.success(`Veículo localizado: ${result.data.modelo}`);
                       }
                     } else {
                       setApiStatus('idle');

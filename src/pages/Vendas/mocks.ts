@@ -1,4 +1,4 @@
-export type ProdutoMock   = {
+export type ProdutoMock = {
   id: string;
   nome: string;
   codigo: string;
@@ -10,150 +10,149 @@ export type ProdutoMock   = {
   criadoEm: string;
   paginaJson?: string;
   descricao: string;
-  tags: string[] | null
+  tags: string[] | null;
   subProdutos?: {
-    id: string
+    id: string;
     nome: string;
     descricao: string;
     imagem: string;
     criadoEm: string;
     paginaJson: string;
   }[];
-
 };
 
-import imageProduto from "@/../public/imagemProduto.jpg"
 import { Product } from "@/types";
 
-export const produtosArr: Partial<Product>[] = [
-  
-]
+export const produtosArr: Partial<Product>[] = [];
 
 export const produtosMock: ProdutoMock[] = [
   {
-    id: "1",
-    nome: "Akad Proteção Total",
-    codigo: "AKD-001",
-    preco: 120.5,
+    id: "10",
+    nome: "Seguro Auto",
+    codigo: "MB-SEG-000",
+    preco: 1980.0,
     status: "Disponível",
-    imagem: imageProduto,
+    imagem: "/assets/fi_products/seguro-auto.png",
     qtdParcelas: 12,
-    valorParcela: 10.04,
+    valorParcela: 165.0,
     criadoEm: "2024-06-01T10:00:00Z",
-    tags: ["Proteção", "saúde", "benefícios", "pessoal"],
+    tags: ["Auto", "Veículos Leves", "Multi-Seguradoras", "Carro Reserva"],
     descricao:
-      "O Akad Proteção Total é um seguro completo voltado para a segurança pessoal e familiar, com diferentes níveis de cobertura para atender a todos os perfis. Ele inclui coberturas por morte acidental, capitalização, auxílio funeral, assistência PET e serviços de saúde digital.",
-    paginaJson: JSON.stringify({
-      caracteristicas: [
-        { nome: "Parcelamento", valor: "Em até 12x" },
-        { nome: "Coberturas", valor: "De R$ 50 mil a R$ 150 mil" },
-        { nome: "Telemedicina", valor: "Inclusa em todos os planos" },
-      ],
-      descricao:
-        "Os produtos Akad oferecem proteção pessoal com coberturas variadas, capitalização e benefícios como assistência PET e clube de descontos.",
-      faq: [
-        {
-          question: "Como posso contratar um plano Akad?",
-          answer:
-            "Você pode contratar diretamente pela plataforma digital ou através de um corretor credenciado.",
-        },
-        {
-          question: "Os produtos possuem carência?",
-          answer:
-            "Sim, há carência de 30 dias para eventos cobertos, salvo em casos de acidente pessoal.",
-        },
-      ],
-    }),
+      "Cobertura completa para automóveis e veículos leves: colisão, roubo, furto, terceiros, vidros e assistência 24h com cotação comparativa entre Porto Seguro, Tokio Marine e Zurich Seguros.",
   },
   {
-    id: "2",
-    nome: "Akad Vida Essencial",
-    codigo: "AKD-002",
-    preco: 89.9,
+    id: "3",
+    nome: "Seguro Caminhão",
+    codigo: "MB-SEG-001",
+    preco: 2950.0,
     status: "Disponível",
-    imagem: imageProduto,
-    qtdParcelas: 10,
-    valorParcela: 8.99,
-    criadoEm: "2024-06-10T09:30:00Z",
-    tags: [],
+    imagem: "/assets/fi_products/truck-insurance.png",
+    qtdParcelas: 12,
+    valorParcela: 245.8,
+    criadoEm: "2024-06-01T10:00:00Z",
+    tags: ["Caminhão", "Pesados", "Multi-Seguradoras", "Guincho Ilimitado"],
     descricao:
-      "O Akad Vida Essencial oferece proteção com coberturas práticas e benefícios que fazem a diferença no dia a dia da família.",
+      "Proteção especializada para veículos pesados Mercedes-Benz: colisão, roubo, furto, carga, terceiros (RCF-V) e guincho 24h sem limite de km com cotação multi-seguradora em tempo real.",
+  },
+  {
+    id: "11",
+    nome: "Seguro de Proteção Financeira",
+    codigo: "MB-SEG-002",
+    preco: 4794.0,
+    status: "Disponível",
+    imagem: "/assets/fi_products/protecao-finan.png",
+    qtdParcelas: 60,
+    valorParcela: 79.9,
+    criadoEm: "2024-06-10T09:30:00Z",
+    tags: ["Prestamista", "Quitação", "PJ", "Saldo Remanescente"],
+    descricao:
+      "Proteção completa para o seu financiamento - Cobertura que garante a quitação da dívida em caso de falecimento (natural ou acidental) ou invalidez permanente total por acidente. Para Pessoa Jurídica, o benefício será conforme a participação societária. Além disso, os beneficiários ou o próprio segurado recebem o saldo remanescente.",
     subProdutos: [
       {
-        id: "22198312",
-        nome: "Essencial Plus",
+        id: "1101",
+        nome: "Proteção Total (Prestamista Plus)",
         descricao:
-          "Cobertura de R$ 40 mil por morte acidental, R$ 20 mil em capitalização, R$ 3 mil de auxílio funeral e acesso à rede de descontos em saúde e farmácias.",
-        imagem: "...",
+          "Quitação integral do saldo devedor em caso de morte natural/acidental ou IPTA. Benefício societário para PJ e devolução de saldo remanescente.",
+        imagem: "/assets/fi_products/protecao-finan.png",
         criadoEm: "2024-06-10T09:30:00Z",
         paginaJson: JSON.stringify({
           caracteristicas: [
-            { nome: "Cobertura por Morte Acidental", valor: "R$ 40.000,00" },
-            { nome: "Capitalização", valor: "R$ 20.000,00" },
-            { nome: "Auxílio Funeral", valor: "R$ 3.000,00" },
-            { nome: "Rede de Descontos", valor: "Farmácias e exames" },
-            { nome: "Carência", valor: "30 dias" },
+            { nome: "Quitação de Dívida", valor: "100% do saldo devedor" },
+            { nome: "Coberturas", valor: "Morte natural/acidental e IPTA" },
+            { nome: "Pessoa Jurídica", valor: "Proporcional à participação societária" },
+            { nome: "Saldo Remanescente", valor: "Garantido aos beneficiários" },
           ],
-          descricao:
-            "Plano econômico para quem busca um seguro acessível com coberturas básicas e benefícios úteis no dia a dia.",
-          faq: [
-            {
-              question: "É possível contratar online?",
-              answer: "Sim, a contratação é 100% digital.",
-            },
-            {
-              question: "O plano cobre morte natural?",
-              answer:
-                "Não. A cobertura se limita a morte acidental e serviços associados.",
-            },
-          ],
+          descricao: "Plano completo para proteção total do financiamento.",
+          faq: [],
         }),
       },
       {
-        id: "22198313",
-        nome: "Essencial Max",
+        id: "1102",
+        nome: "Proteção Básica (Prestamista Flex)",
         descricao:
-          "Cobertura de R$ 60 mil por morte acidental, R$ 30 mil em capitalização, R$ 7 mil de auxílio funeral, acesso a rede de saúde com descontos e seguro de assistência residencial.",
-        imagem: "...",
+          "Quitação de saldo devedor até R$ 250.000,00 por morte acidental ou IPTA, com devolução de excedente.",
+        imagem: "/assets/fi_products/protecao-finan.png",
         criadoEm: "2024-06-10T09:30:00Z",
         paginaJson: JSON.stringify({
           caracteristicas: [
-            { nome: "Cobertura por Morte Acidental", valor: "R$ 60.000,00" },
-            { nome: "Capitalização", valor: "R$ 30.000,00" },
-            { nome: "Auxílio Funeral", valor: "R$ 7.000,00" },
-            { nome: "Assistência Residencial", valor: "Inclusa (hidráulica e elétrica)" },
+            { nome: "Quitação de Dívida", valor: "Até R$ 250.000,00" },
+            { nome: "Cobertura", valor: "Morte acidental e IPTA" },
           ],
-          descricao:
-            "Um plano intermediário para quem quer um pouco mais de proteção e benefícios agregados.",
-          faq: [
-            {
-              question: "Inclui cobertura para acidentes domésticos?",
-              answer:
-                "Sim, qualquer acidente pessoal dentro ou fora da residência está incluso.",
-            },
-            {
-              question: "Como funciona a assistência residencial?",
-              answer:
-                "Em caso de emergência, a seguradora envia um profissional para reparos básicos.",
-            },
-          ],
+          descricao: "Plano acessível para proteção do saldo devedor.",
+          faq: [],
         }),
       },
     ],
   },
   {
-    id: "3",
-    nome: "Akad Família Segura",
-    codigo: "AKD-003",
-    preco: 149.9,
+    id: "12",
+    nome: "Seguro de Garantia Estendida",
+    codigo: "MB-SEG-003",
+    preco: 3576.0,
     status: "Disponível",
-    imagem: imageProduto, // string path da imagem
-    qtdParcelas: 12,
-    valorParcela: 12.49,
+    imagem: "/assets/fi_products/insurance-extend.png",
+    qtdParcelas: 24,
+    valorParcela: 149.0,
     criadoEm: "2024-06-15T11:00:00Z",
-    tags: ["familia", "segurança", "proteção", "24h"],
+    tags: ["Garantia", "Mercedes-Benz", "Extend Plus", "Peças Genuínas"],
     descricao:
-      "O Akad Família Segura é ideal para quem busca proteção estendida para todos os membros da família, com ampla cobertura, assistência 24h e serviços digitais.",
+      "Proteção completa para o seu veículo - Garantimos a cobertura com peças genuínas do seu caminhão e atendimento nas Concessionárias Mercedes-Benz. Cobertura e benefícios personalizados.",
+    subProdutos: [
+      {
+        id: "1201",
+        nome: "Proteção Total (Extend Plus)",
+        descricao:
+          "Proteção completa para o seu veículo - Cobertura para o Trem de Força (Chassi) e Sistema elétrico; peças genuínas e atendimento nas Concessionárias Mercedes-Benz.",
+        imagem: "/assets/fi_products/insurance-extend.png",
+        criadoEm: "2024-06-15T11:00:00Z",
+        paginaJson: JSON.stringify({
+          caracteristicas: [
+            { nome: "Trem de Força", valor: "Incluso (Chassi)" },
+            { nome: "Sistema Elétrico", valor: "Incluso" },
+            { nome: "Peças", valor: "100% Genuínas Mercedes-Benz" },
+            { nome: "Atendimento", valor: "Concessionárias Mercedes-Benz" },
+          ],
+          descricao: "Cobertura máxima incluindo trem de força e sistema elétrico.",
+          faq: [],
+        }),
+      },
+      {
+        id: "1202",
+        nome: "Proteção Básica (Extend)",
+        descricao:
+          "Proteção completa para o seu veículo - Cobertura para o Trem de Força (Chassi); peças genuínas e atendimento nas Concessionárias Mercedes-Benz.",
+        imagem: "/assets/fi_products/insurance-extend.png",
+        criadoEm: "2024-06-15T11:00:00Z",
+        paginaJson: JSON.stringify({
+          caracteristicas: [
+            { nome: "Trem de Força", valor: "Incluso (Chassi)" },
+            { nome: "Peças", valor: "100% Genuínas Mercedes-Benz" },
+            { nome: "Atendimento", valor: "Concessionárias Mercedes-Benz" },
+          ],
+          descricao: "Cobertura essencial para o trem de força do caminhão.",
+          faq: [],
+        }),
+      },
+    ],
   },
-  
 ];

@@ -205,10 +205,20 @@ export default function ProductDialog({ produto, onClose, planos = [] }: Readonl
                             </div>
                             <div className="flex flex-col gap-4 w-full md:max-w-sm">
                                 <h1 className="text-2xl font-bold flex items-center gap-3">{produto.nmProduto} {selectedPlan && <Badge className="bg-[var(--cor-principal)] text-white">{selectedPlan.nmProduto}</Badge>}</h1>
-                                <p className="text-sm text-muted-foreground">{produto.dsProduto}</p>
                                 <div className="flex flex-col gap-2 w-full">
                                     {
-                                        selectedPlan?.qtParcelas ? (
+                                        (produto.subCategoria === "auto" || produto.subCategoria === "caminhao" || produto.idProduto === 3 || produto.idProduto === 10) ? (
+                                            <div className="flex flex-col gap-2 w-full p-4 rounded-xl bg-gradient-to-br from-primary/5 via-muted to-muted/60 border border-primary/20">
+                                                <div className="flex items-center gap-2">
+                                                    <Badge className="bg-[var(--cor-principal)] text-white text-xs">Cotação Sob Demanda</Badge>
+                                                    <span className="text-xs font-semibold text-muted-foreground">Mesa Digital F&amp;I</span>
+                                                </div>
+                                                <span className="font-bold text-xl text-zinc-900 dark:text-zinc-100">Cálculo Multi-Seguradora</span>
+                                                <p className="text-xs text-muted-foreground leading-relaxed">
+                                                    Valores personalizados calculados em tempo real de acordo com os dados do veículo entre <b>Porto Seguro</b>, <b>Tokio Marine</b> e <b>Zurich Seguros</b>.
+                                                </p>
+                                            </div>
+                                        ) : selectedPlan?.qtParcelas ? (
                                             <>
                                                 <span className="text-sm text-muted-foreground">Em até {selectedPlan?.qtParcelas ?? "--"}x de</span>
                                                 <span className="font-semibold text-4xl">
@@ -371,7 +381,7 @@ export default function ProductDialog({ produto, onClose, planos = [] }: Readonl
                                         navigate(`/sales/product/${selectedPlan?.idProduto}`)
                                     }} disabled={!selectedPlan?.idProduto}>
                                         <span>
-                                            {(Number(produto.tpCategoria) === 4 || Number(produto.tpCategoria) === 5 || Number(produto.tpProduto) === 4 || Number(produto.tpProduto) === 5) ? t("product.simulateNow") : t("product.buyNow")}
+                                            {(Number(produto.tpCategoria) === 4 || Number(produto.tpCategoria) === 5 || Number(produto.tpProduto) === 4 || Number(produto.tpProduto) === 5 || produto.subCategoria === "auto" || produto.subCategoria === "caminhao" || produto.idProduto === 3 || produto.idProduto === 10) ? "Cotar Agora" : t("product.buyNow")}
                                         </span>
                                     </Button>
                                     <DialogClose asChild>
